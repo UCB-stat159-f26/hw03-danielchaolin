@@ -1,6 +1,6 @@
-# Tennis Career Match Visualization
+# STAT 159 Homework 3 Python Package
 
-STAT 159 Homework 3 | UC Berkeley
+Author: Daniel Lin
 
 ## Overview
 
