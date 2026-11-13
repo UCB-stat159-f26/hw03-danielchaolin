@@ -1,6 +1,21 @@
 from datetime import datetime
 
 
+def _detect_tour(matches):
+	for match in matches:
+		if len(match) <= 16 or not match[16]:
+			continue
+		value = str(match[16])
+		if len(value) == 8 and value.isdigit():
+			return "wta"
+		try:
+			float(value)
+			return "atp"
+		except ValueError:
+			continue
+	raise ValueError("Could not determine player tour from match data.")
+
+
 def _calculate_age(birthdate, match_date):
 	return (match_date - birthdate).days / 365.25
 

@@ -3,7 +3,7 @@ from pathlib import Path
 
 import pytest
 
-from tennis_career._cleaning import _clean_match
+from tennis_career._cleaning import _clean_match, _detect_tour
 from tennis_career._parsing import _parse_matches
 
 
@@ -48,3 +48,11 @@ def test_invalid_result():
 	match[4] = "X"
 
 	assert _clean_match(match, datetime(1986, 6, 3), "atp") is None
+
+
+def test_detect_player_tour():
+	female = _load_matches("female_player.js")
+	male = _load_matches("male_player.js")
+
+	assert _detect_tour(female) == "wta"
+	assert _detect_tour(male) == "atp"
