@@ -1,0 +1,15 @@
+Tool: ChatGPT (OpenAI, GPT-6)
+
+I used ChatGPT primarily to write automated tests and debug errors in my code.
+
+Representative Prompts:
+- "Is this function within the 20-line limit?"
+- "Why does Rafael Nadal return no usable career matches?"
+- "How should I test my package?"
+
+AI Outputs:
+- Confirmation of meeting homework requirements.
+- Debugging explanations and code corrections.
+- Suggested pytest tests.
+
+I manually reviewed, tested, and verified the suggested code using both sample and live Tennis Abstract data.
