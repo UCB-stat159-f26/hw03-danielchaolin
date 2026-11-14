@@ -75,6 +75,8 @@ hw03-danielchaolin/
 │   └── test_public.py
 ├── pyproject.toml
 ├── instructions.md
+├── ai_documentation.txt
+├── LICENSE
 ├── .gitignore
 └── README.md
 ```
@@ -98,9 +100,9 @@ The package was also manually tested using live career data for Serena Williams 
 
 This assignment helped me understand to better break down a problem into separate smaller functions that build into a reusable Python package. Unlike the previous homework and projects, where I mainly handled the coding in larger Python scripts or large notebooks, this homework guided me towards creating this more modular approach by maintaining the 20 line limit for my functions.
 
-One difficulty I encountered in this project was accounting for the differences in how Tennis Abstract stores opponent ages for male and female players. I also encountered issues with retrieving player birthdates when the I had not identified the correct data format. Debugging these problems were simpler once I had separated my package into multiple functions as I did not have to look through a large combined file to understand what I needed to change. However, an issue I had with debugging was that I initially used automated tests to determine if I had created my functions correctly. Because these automated tests were not based on the live data drawn from Tennis Abstract, but instead the sample data format given as a fixed test, I was unable to realize that my code had issues until I attempted to run it drawing on the actual online Tennis Abstract data.
+One difficulty I encountered in this project was accounting for the differences in how Tennis Abstract stores opponent ages for male and female players. I also encountered issues with retrieving player birthdates when the I had not identified the correct data format. Debugging these problems were simpler once I had separated my package into multiple functions as I did not have to look through a large combined file to understand what I needed to change. However, an issue I had with debugging was that I initially used automated tests to determine if I had created my functions correctly. Because these automated tests were not based on the live data drawn from Tennis Abstract, but instead the sample data format given as a fixed test, I was unable to realize that my code had issues until I attempted to run it drawing on the actual online Tennis Abstract data. Lastly, while double checking that my graphs were being created correctly, I realized that some players were missing match data from more recent years, which was because of how Tennis Abstract stores older and newer matches in separate JavaScript files and, for some players, directly in their profile pages.
 
-All in all, what I got from this assignment was that modular code and clear comments were efficient for debugging and that testing with real data is needed to ensure that a package works beyond controlled cases.
+All in all, what I got from this assignment was that modular code and clear comments were efficient for debugging and that testing the outputs generated with real data is needed to ensure that a package works beyond controlled cases.
 
 ## Data Source
 
