@@ -27,4 +27,4 @@ def get_career_matches(player_name):
 	]
 	if not records:
 		raise ValueError(f"No usable career matches found for '{player_name}'.")
-	return pd.DataFrame(records)
+	return pd.DataFrame(records).drop_duplicates().reset_index(drop=True)
