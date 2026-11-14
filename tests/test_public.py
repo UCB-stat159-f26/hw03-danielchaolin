@@ -14,8 +14,12 @@ FIXTURES = Path(__file__).parent / "fixtures"
 
 def _mock_matches(player_name, birthdate, tour, fixture):
 	js_text = (FIXTURES / fixture).read_text(encoding="utf-8")
+	recent_js = "var matchmx = [];"
+	profile_html = "var matchmx = [];"
+
 	with patch("tennis_career.data._get_player_profile", return_value=(birthdate, tour)):
-		with patch("tennis_career.data._download_text", return_value=js_text):
+		with patch("tennis_career.data._download_text",
+				   side_effect=[js_text, recent_js, profile_html]):
 			return get_career_matches(player_name)
 
 
@@ -72,7 +76,7 @@ def test_combined_career_formats():
 	with patch("tennis_career.data._get_player_profile",
 			   return_value=(datetime(1986, 6, 3), "atp")):
 		with patch("tennis_career.data._download_text",
-				   side_effect=[older, recent]):
+				   side_effect=[older, recent, "var matchmx = [];"]):
 			matches = get_career_matches("Rafael Nadal")
 
 	assert len(matches) == 2
