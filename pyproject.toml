@@ -12,6 +12,7 @@ dependencies = [
     "matplotlib>=3.6",
     "requests>=2.28",
 ]
+license = "MIT"
 
 [tool.setuptools.packages.find]
 where = ["src"]

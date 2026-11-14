@@ -105,3 +105,7 @@ All in all, what I got from this assignment was that modular code and clear comm
 ## Data Source
 
 [Tennis Abstract](https://www.tennisabstract.com/)
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
