@@ -12,20 +12,19 @@ def _parse_birthdate(text):
 
 
 def _get_player_profile(player_name):
-	for tour, page in (("wta", "wplayer-classic"), ("atp", "player-classic")):
-		url = f"https://www.tennisabstract.com/cgi-bin/{page}.cgi?p={player_name}"
+	urls = [
+		f"https://www.tennisabstract.com/jsmatches/{player_name}.js",
+		f"https://www.tennisabstract.com/cgi-bin/player-classic.cgi?p={player_name}",
+		f"https://www.tennisabstract.com/cgi-bin/wplayer-classic.cgi?p={player_name}"
+	]
+
+	for url in urls:
 		try:
-			html = _download_text(url)
+			birthdate = _parse_birthdate(_download_text(url))
 		except ValueError:
 			continue
-
-		birthdate = _parse_birthdate(html)
-		script = f"/jsmatches/{player_name}.js"
-		if not birthdate and script in html:
-			js_url = f"https://www.tennisabstract.com/jsmatches/{player_name}.js"
-			birthdate = _parse_birthdate(_download_text(js_url))
-
 		if birthdate:
-			return birthdate, tour
+			return birthdate, None
 
 	raise ValueError(f"Could not find a Tennis Abstract profile for '{player_name}'.")
+

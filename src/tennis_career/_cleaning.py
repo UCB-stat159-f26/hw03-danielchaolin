@@ -21,12 +21,16 @@ def _calculate_age(birthdate, match_date):
 
 
 def _get_opponent_age(value, match_date, tour):
-	if tour == "wta":
+	value = str(value).strip()
+
+	if len(value) == 8 and value.isdigit():
 		birthdate = datetime.strptime(value, "%Y%m%d")
 		return _calculate_age(birthdate, match_date)
-	if tour == "atp":
+
+	if tour in ("wta", "atp"):
 		return float(value)
-	raise ValueError("Unknown player tour.")
+
+	raise ValueError("Unknown opponent age format.")
 
 
 def _clean_match(match, player_birthdate, tour):

@@ -25,3 +25,12 @@ def test_missing_match_array():
 def test_malformed_match_array():
 	with pytest.raises(ValueError):
 		_parse_matches('var morematchmx = ["incomplete", ];')
+
+def test_combining_duplicate_matches():
+	from tennis_career._parsing import _combine_matches
+
+	match = ["20240101", "Example Open", "", "", "W",
+			 "", "", "", "R32", "6-4 6-4", "", "Opponent"]
+
+	assert len(_combine_matches([match], [match])) == 1
+

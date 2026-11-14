@@ -63,3 +63,18 @@ def test_scatter_plot():
 def test_invalid_plot_data():
 	with pytest.raises(ValueError, match="missing required"):
 		plot_career_matches(pd.DataFrame({"player_age": [20]}))
+
+
+def test_combined_career_formats():
+	older = 'var morematchmx = [["20010910", "Spain F10", "Hard", "S", "L", "", "", "WC", "R32", "2-6 7-5 6-2", "3", "Guillermo Platel", "", "", "", "R", "22.264202601"]];'
+	recent = 'var matchmx = [["20240729", "Paris", "Clay", "M", "W", "", "", "", "R32", "6-4 6-4", "3", "Example Opponent", "", "", "", "R", "20000101"]];'
+
+	with patch("tennis_career.data._get_player_profile",
+			   return_value=(datetime(1986, 6, 3), "atp")):
+		with patch("tennis_career.data._download_text",
+				   side_effect=[older, recent]):
+			matches = get_career_matches("Rafael Nadal")
+
+	assert len(matches) == 2
+	assert matches["date"].max() == datetime(2024, 7, 29)
+	assert matches["opponent_age"].notna().all()
